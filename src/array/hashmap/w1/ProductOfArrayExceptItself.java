@@ -28,29 +28,46 @@ public class ProductOfArrayExceptItself {
         return answer;
     }
 
+    public int[] productExceptSelfConstantSpace(int[] nums) {
+        int n = nums.length;
+        int prefix = 1;
+        int suffix = 1;
+        int[] ans = new int[n];
+
+        for(int i = 0; i < n; i++){
+            ans[i] = prefix;
+            prefix = prefix * nums[i];
+        }
+
+        for(int i = n - 1; i >= 0; i--){
+            ans[i] = ans[i] * suffix;
+            suffix = suffix * nums[i];
+        }
+
+        return ans;
+    }
+
     public static void main(String[] args) {
         ProductOfArrayExceptItself obj = new ProductOfArrayExceptItself();
 
         System.out.println(Arrays.toString(obj.productExceptSelf(new int[]{1, 2, 3, 4})));
         System.out.println(Arrays.toString(obj.productExceptSelf(new int[]{-1,1,0,-3,3})));
+
+        System.out.println(Arrays.toString(obj.productExceptSelfConstantSpace(new int[]{1, 2, 3, 4})));
+        System.out.println(Arrays.toString(obj.productExceptSelfConstantSpace(new int[]{-1,1,0,-3,3})));
     }
 
 }
 
 /*
  *
- * Approach: We can use an integer array freq of length 26 to keep track of the frequency of each letter in the two strings.
- * We first check if the length of both strings is the same. If not, we return false because anagrams must have the same length.
- * We loop through each character in both strings and increment the frequency of the corresponding letter in s
- * and decrement the frequency of the corresponding letter in t.
- * Finally, we loop through the freq array and check if all frequencies are zero.
- * If not, we return false. If all frequencies are zero, we return true because both
- * strings are anagrams of each other.
+ * Constant space Approach: Store the prefix of each index in answer array. Initialize suffix = 1 and calculate
+ * suffix of every index while traversing back and multiply suffix with current answer to get required result.
  *
- * TC : O(n)  n = length of string
+ * TC : O(n)  n = length of array
  * SC: O(1)
  *
- * Input: s = "anagram", t = "nagaram"
- * Output: true
+ * Input: nums = [1,2,3,4]
+ * Output: [24,12,8,6]
  *
  */
