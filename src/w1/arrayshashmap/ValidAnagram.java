@@ -1,4 +1,4 @@
-package array.hashmap.w1;
+package w1.arrayshashmap;
 
 public class ValidAnagram {
 

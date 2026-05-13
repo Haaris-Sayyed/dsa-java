@@ -1,4 +1,4 @@
-package twopointers.w1;
+package w1.twopointers;
 
 import java.util.*;
 
@@ -57,7 +57,7 @@ public class ThreeSum {
  * add this to our answer array
  * then increment j pointer and check if nums[j] == nums[j - 1] increment j pointer till j < k to avoid duplicates.
  *
- * TC : O(n)  n = length of array
+ * TC : O(n*n)  n = length of array
  * SC: O(1)
  *
  * Input: nums = [-1,0,1,2,-1,-4]

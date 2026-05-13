@@ -1,4 +1,4 @@
-package twopointers.w1;
+package w1.twopointers;
 
 public class ValidPalindrome {
 
