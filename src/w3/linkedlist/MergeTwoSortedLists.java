@@ -34,3 +34,20 @@ public class MergeTwoSortedLists {
         linkedListUtil.printList(mergedListHead);
     }
 }
+
+
+/*
+ *
+ * Approach: The algorithm operates purely by restructuring existing pointers in-place, rather than wasting memory allocating brand-new nodes.
+ *           It establishes a dummyHead node at the start. This acts as an anchor, allowing the current pointer to seamlessly
+ *           append nodes without needing to check if the head of the merged list has been set yet. The while loop runs as long as both lists have remaining elements. At each step, it compares the values at list1 and list2.
+ *           The smaller node is stitched directly onto current.next, and that list's pointer advances forward. Once the loop breaks, it means one of the lists has run completely dry. Because the original lists were already individually sorted, the algorithm doesn't need to loop through the remaining items of the survivor list.
+ *           It uses a ternary operator to instantly link the rest of the non-empty list directly to current.next in a single assignment.
+ *
+ * TC: O(N + M) Let N be the number of nodes in list1 and M be the number of nodes in list2.
+ * SC: O(1)
+ *
+ * Input: list1 = [1,2,4], list2 = [1,3,4]
+ * Output: [1,1,2,3,4,4]
+ *
+ */

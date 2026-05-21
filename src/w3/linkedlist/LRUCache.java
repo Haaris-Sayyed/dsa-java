@@ -84,3 +84,31 @@ public class LRUCache {
 
     }
 }
+
+/*
+ *
+ * Approach: To achieve lightning-fast access and updates, it combines two distinct data structures:
+ *           a HashMap and a Doubly Linked List.
+ *
+ *           The HashMap (keyToNode): This provides O(1) fast lookups. The keys are the cache keys, and the values point
+ *                                    directly to the corresponding nodes inside our doubly linked list.
+ *           The Doubly Linked List (head and tail): This tracks the usage history.The Front (head.next): Represents the most
+ *                                                   recently used items.The Back (tail.prev): Represents the least recently used items.Dummy
+ *           Sentinel Nodes: The head and tail are initialized as empty "dummy" boundary nodes. This completely eliminates
+ *                           annoying null pointer checks when inserting or removing items from the edges of the list.
+ *
+ *           get: If the key exists, we find its node via the map. To mark it as recently used, we splice it out of its current
+ *                position (remove) and pop it right behind the dummy head (insertAtFront).
+ *
+ *           put: If the key already exists, we update its value and move it to the front. If it's a new key and the cache is full (size == capacity), we look at tail.
+ *               prev to find the oldest item, evict it from both the linked list and the map, and then insert our new node at the front.
+ *
+ * TC : O(1)
+ * SC: O(N) Let N be the total number of nodes in the linked list.
+ *
+ * Input: ["LRUCache", "put", "put", "get", "put", "get", "put", "get", "get", "get"]
+ *        [[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
+ *
+ * Output: [1,-1,-1,3,4]
+ *
+ */
